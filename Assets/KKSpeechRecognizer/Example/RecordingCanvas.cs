@@ -8,6 +8,9 @@ public class RecordingCanvas : MonoBehaviour
   public Button startRecordingButton;
   public Text resultText;
 
+    [SerializeField]
+    GameObject palpatine;
+
   void Start()
   {
     if (SpeechRecognizer.ExistsOnDevice())
@@ -36,11 +39,13 @@ public class RecordingCanvas : MonoBehaviour
     startRecordingButton.GetComponentInChildren<Text>().text = "Start Recording";
     resultText.text = result;
     startRecordingButton.enabled = true;
-  }
+        if (result.ToUpper() == "ORDER 66" || result.ToUpper() == "ORDER") palpatine.SetActive(true);
+    }
 
   public void OnPartialResult(string result)
   {
     resultText.text = result;
+        if (result.ToUpper() == "ORDER 66" || result.ToUpper() == "ORDER") palpatine.SetActive(true);
   }
 
   public void OnAvailabilityChange(bool available)
